@@ -64,6 +64,7 @@ fun main(args: Array<String>) {
         } catch (e: Exception) {
             println("❌ Test case "+(i+1)+" failed with error: ${e.message}")
             println("   Input: $input")
+            println("   Expected: $expected")
             System.exit(1)
         }
     }
@@ -99,6 +100,10 @@ fun convertValue(value: Any?, targetType: String): Any? {
         value is List<*> && targetType.contains("IntArray") -> {
             val numberList = value.filterIsInstance<Number>()
             numberList.map { it.toInt() }.toIntArray()
+        }
+        value is List<*> && targetType.contains("Array") && value.all { it is String } -> {
+            @Suppress("UNCHECKED_CAST")
+            (value as List<String>).toTypedArray()
         }
         value is List<*> && targetType.contains("Array") -> {
             value.toTypedArray()

@@ -40,17 +40,24 @@ def main():
             if i == 0:
                 # Find the method that takes the input parameters
                 method_name = None
+                input_keys = list(case['input'].keys())
+                
+                # Try to find method by parameter names first
                 for attr_name in dir(solution):
                     if not attr_name.startswith('_'):
                         attr = getattr(solution, attr_name)
                         if callable(attr):
-                            # Check if it's the method we want (containsDuplicate for day01)
-                            if 'containsDuplicate' in attr_name or 'contains' in attr_name.lower():
+                            # Check if method name matches any input key or common patterns
+                            if any(key in attr_name.lower() for key in input_keys):
+                                method_name = attr_name
+                                break
+                            # Check for common method patterns
+                            elif any(pattern in attr_name.lower() for pattern in ['group', 'anagram, tains', 'duplicate', 'valid', 'palindrome']):
                                 method_name = attr_name
                                 break
                 
                 if not method_name:
-                    # Try to find any method that matches the input structure
+                    # Fallback: find any public method
                     for attr_name in dir(solution):
                         if not attr_name.startswith('_'):
                             attr = getattr(solution, attr_name)
