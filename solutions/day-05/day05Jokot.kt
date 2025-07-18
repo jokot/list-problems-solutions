@@ -1,6 +1,6 @@
 class Solution {
     fun topKFrequent(nums: IntArray, k: Int): IntArray {
-        return getTopK(bucketsSort(counter(nums), nums.size), k)
+        return getTopK(bucketSort(counter(nums), nums.size), k)
     }
 
     fun counter(nums: IntArray): Map<Int, Int> {
@@ -13,7 +13,7 @@ class Solution {
         return count
     }
 
-    fun bucketsSort(couter: Map<Int, Int>, size: Int): List<List<Int>> {
+    fun bucketSort(couter: Map<Int, Int>, size: Int): List<List<Int>> {
         val buckets = MutableList(size + 1) { mutableListOf<Int>() }
 
         couter.forEach { n, c ->
