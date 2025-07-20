@@ -2,13 +2,13 @@
   "projectName": "list-problems-solutions",
   "projectOwner": "indraseptama",
   "repoType": "github",
-  "repoHost": "https://github.com",
+  "repoHost": "",
   "files": [
     "README.md"
   ],
   "imageSize": 100,
   "commit": true,
-  "commitConvention": "none",
+  "commitConvention": "angular",
   "contributors": [],
   "contributorsPerLine": 7,
   "linkToUsage": true
